@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lourdes 2025</title>
+    <style>
+        :root {
+            --background-color: #E7E9FE;
+            --color-1: #27A6F5; /* Lourdes buttons */
+            --color-2: #273FF5; /* Day buttons */
+            --color-3: #7627F5; /* Header */
+            --text-color: #333;
+            --header-height: 60px;
+            --liturgical-red: #F52727;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--color-3);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            z-index: 1000;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hamburger-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hamburger-icon .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+        }
+
+        main {
+            padding: calc(var(--header-height) + 20px) 15px 20px 15px;
+            text-align: center;
+        }
+
+        .view {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn-day { background-color: var(--color-2); }
+        .btn-lourdes { background-color: var(--color-1); }
+        .btn-back { background-color: #6c757d; }
+
+        .submenu-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        #content-view {
+            text-align: left;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        #content-display p {
+            margin-bottom: 1em;
+        }
+
+        #content-display br {
+            content: "";
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        
+        /* Estilos para texto litúrgico */
+        .liturgical-red {
+            color: var(--liturgical-red);
+        }
+
+        .liturgical-title {
+            color: var(--liturgical-red);
+            font-weight: bold;
+            display: block;
+            margin-top: 1.5em;
+            margin-bottom: 0.7em;
+        }
+        
+        /* Estilos para contenido enriquecido */
+        .content-subheading {
+            display: block;
+            font-weight: bold;
+            color: var(--color-1);
+            margin-top: 1.5em;
+            margin-bottom: 0.7em;
+            font-size: 1.15em;
+        }
+
+        #content-display em {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+
+    <header id="home-button">
+        <div class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        LOURDES 2025
+    </header>
+
+    <main>
+        <!-- Main Menu -->
+        <div id="main-menu" class="view">
+            <div class="menu-container">
+                <button class="btn btn-day" onclick="showView('submenu-viernes')">🗓️ Viernes 17</button>
+                <button class="btn btn-day" onclick="showView('submenu-sabado')">🗓️ Sábado 18</button>
+                <button class="btn btn-day" onclick="showView('submenu-domingo')">🗓️ Domingo 19</button>
+                <button class="btn btn-lourdes" onclick="showView('submenu-lourdes')">✨ Lourdes</button>
+            </div>
+        </div>
+
+        <!-- Submenu Viernes -->
+        <div id="submenu-viernes" class="view">
+            <h2 class="submenu-title">Viernes 17</h2>
+            <div class="menu-container">
+                <button class="btn btn-day" onclick="showContent('VIERNES_VISPERAS', 'submenu-viernes')">Vísperas (Bus)</button>
+                <button class="btn btn-day" onclick="showContent('VIERNES_PROGRAMA', 'submenu-viernes')">Programa del Día</button>
+                <button class="btn btn-back" onclick="showView('main-menu')">Volver</button>
+            </div>
+        </div>
+
+        <!-- Submenu Sábado -->
+        <div id="submenu-sabado" class="view">
+            <h2 class="submenu-title">Sábado 18</h2>
+            <div class="menu-container">
+                <button class="btn btn-day" onclick="showContent('SABADO_PROGRAMA', 'submenu-sabado')">Programa del Día</button>
+                <button class="btn btn-back" onclick="showView('main-menu')">Volver</button>
+            </div>
+        </div>
+        
+        <!-- Submenu Domingo -->
+        <div id="submenu-domingo" class="view">
+            <h2 class="submenu-title">Domingo 19</h2>
+            <div class="menu-container">
+                <button class="btn btn-day" onclick="showContent('DOMINGO_VISPERAS', 'submenu-domingo')">Vísperas (Bus)</button>
+                <button class="btn btn-day" onclick="showContent('DOMINGO_PROGRAMA', 'submenu-domingo')">Programa del Día</button>
+                <button class="btn btn-back" onclick="showView('main-menu')">Volver</button>
+            </div>
+        </div>
+
+        <!-- Submenu Lourdes -->
+        <div id="submenu-lourdes" class="view">
+            <h2 class="submenu-title">Lourdes</h2>
+            <div class="menu-container">
+                <button class="btn btn-lourdes" onclick="showContent('LOURDES_MENSAJE', 'submenu-lourdes')">El Mensaje</button>
+                <button class="btn btn-lourdes" onclick="showContent('LOURDES_BERNARDET', 'submenu-lourdes')">Bernardita</button>
+                <button class="btn btn-lourdes" onclick="showContent('LOURDES_AGUA', 'submenu-lourdes')">El Agua</button>
+                <a href="https://www.lourdes-france.org/es" class="btn btn-lourdes" target="_blank" rel="noopener noreferrer">🌐 Web Oficial</a>
+                <button class="btn btn-lourdes" onclick="showContent('LOURDES_APP', 'submenu-lourdes')">📱 App Oficial</button>
+                <button class="btn btn-back" onclick="showView('main-menu')">Volver</button>
+            </div>
+        </div>
+
+        <!-- Content View -->
+        <div id="content-view" class="view">
+            <div id="content-display"></div>
+            <div class="menu-container" style="margin-top: 30px;">
+                <button id="content-back-button" class="btn btn-back">Volver</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // CONTENIDO DE LA APLICACIÓN
+        const contenidoApp = {
+            "VIERNES_VISPERAS": `VÍSPERAS VIERNES
+(Oración de la tarde)
+
+INVOCACIÓN INICIAL
+
+V. Dios mío, ven en mi auxilio
+R. Señor, date prisa en socorrerme. Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén. Aleluya.
+
+Himno: OH DIOS, QUE ERES EL PREMIO
+
+Oh Dios, que eres el premio, la corona
+y la suerte de todos tus soldados,
+líbranos de los lazos de las culpas
+por este mártir a quien hoy cantamos.
+
+El conoció la hiel que está escondida
+en la miel de los goces de este suelo,
+y, por no haber cedido a sus encantos,
+está gozando los del cielo eterno.
+
+Él afrontó con ánimo seguro
+lo que sufrió con varonil coraje,
+y consiguió los celestiales dones
+al derramar por ti su noble sangre.
+
+Oh piadosísimo Señor de todo,
+te suplicamos con humilde ruego
+que, en el día del triunfo de este mártir,
+perdones los pecados de tus siervos.
+
+Gloria eterna al divino Jesucristo,
+que nació de una Virgen impecable,
+y gloria eterna al Santo Paracleto,
+y gloria eterna al sempiterno Padre. Amén.
+
+SALMODIA
+
+Salmo 144 I - HIMNO A LA GRANDEZA DE DIOS.
+
+Te ensalzaré, Dios mío, mi rey;
+bendeciré tu nombre por siempre jamás.
+
+Día tras día te bendeciré
+y alabaré tu nombre por siempre jamás.
+
+Grande es el Señor, merece toda alabanza,
+es incalculable su grandeza;
+una generación pondera tus obras a la otra,
+y le cuenta tus hazañas.
+
+Alaban ellos la gloria de tu majestad,
+y yo repito tus maravillas;
+encarecen ellos tus temibles proezas,
+y yo narro tus grandes acciones;
+difunden la memoria de tu inmensa bondad,
+y aclaman tus victorias.
+
+El Señor es clemente y misericordioso,
+lento a la cólera y rico en piedad;
+el Señor es bueno con todos,
+es cariñoso con todas sus creaturas.
+
+Que todas tus creaturas te den gracias, Señor,
+que te bendigan tus fieles;
+que proclamen la gloria de tu reinado,
+que hablen de tus hazañas;
+
+explicando tus proezas a los hombres,
+la gloria y majestad de tu reinado.
+Tu reinado es un reinado perpetuo,
+tu gobierno va de edad en edad.
+
+Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.
+
+Ant. Día tras día te bendeciré, Señor, y explicaré tus proezas.
+
+Ant 2. Los ojos de todos te están aguardando, Señor, tú estás cerca de los que te invocan.
+
+Salmo 144 II
+
+El Señor es fiel a sus palabras,
+bondadoso en todas sus acciones.
+El Señor sostiene a los que van a caer,
+endereza a los que ya se doblan.
+
+Los ojos de todos te están aguardando,
+tú les das la comida a su tiempo;
+abres tú la mano,
+y sacias de favores a todo viviente.
+
+El Señor es justo en todos sus caminos,
+es bondadoso en todas sus acciones;
+cerca está el Señor de los que lo invocan,
+de los que lo invocan sinceramente.
+
+Satisface los deseos de sus fieles,
+escucha sus gritos, y los salva.
+El Señor guarda a los que lo aman,
+pero destruye a los malvados.
+
+Pronuncie mi boca la alabanza del Señor,
+todo viviente bendiga su santo nombre
+por siempre jamás.
+
+Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.
+
+Ant. Los ojos de todos te están aguardando, Señor, tú estás cerca de los que te invocan.
+
+Ant 3. Justos y verdaderos son tus caminos, ¡oh Rey de los siglos!
+
+Cántico: CANTO DE LOS VENCEDORES Ap 15, 3-4
+
+Grandes y maravillosas son tus obras,
+Señor, Dios omnipotente,
+justos y verdaderos tus caminos,
+¡oh Rey de los siglos!
+
+¿Quién no temerá, Señor,
+y glorificará tu nombre?
+Porque tú solo eres santo,
+porque vendrán todas las naciones
+y se postrarán en tu acatamiento,
+porque tus juicios se hicieron manifiestos.
+
+Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.
+
+Ant. Justos y verdaderos son tus caminos, ¡oh Rey de los siglos!
+
+LECTURA BREVE   1Pe 4, 13-14
+
+Queridos hermanos: Estad alegres cuando compartís los padecimientos de Cristo, para que, cuando se manifieste su gloria, reboséis de gozo. Si os ultrajan por el nombre de Cristo, dichosos vosotros: porque el Espíritu de la gloria, el Espíritu de Dios, reposa sobre vosotros.
+
+RESPONSORIO BREVE
+
+V. Oh Dios, nos pusiste a prueba, pero nos has dado respiro.
+R. Oh Dios, nos pusiste a prueba, pero nos has dado respiro.
+
+V. Nos refinaste como refinan la plata.
+R. Pero nos has dado respiro.
+
+V. Gloria al Padre, y al Hijo, y al Espíritu Santo.
+R. Oh Dios, nos pusiste a prueba, pero nos has dado respiro.
+
+CÁNTICO EVANGÉLICO
+
+Ant. Lo que deseo es el pan de Dios, que es la carne de Jesucristo, de la descendencia de David, y la bebida de su sangre, que es la caridad incorruptible.
+
+Cántico de María. ALEGRÍA DEL ALMA EN EL SEÑOR Lc 1, 46-55
+
+Proclama mi alma la grandeza del Señor,
+se alegra mi espíritu en Dios, mi salvador;
+porque ha mirado la humillación de su esclava.
+
+Desde ahora me felicitarán todas las generaciones,
+porque el Poderoso ha hecho obras grandes por mí:
+su nombre es santo,
+y su misericordia llega a sus fieles
+de generación en generación.
+
+El hace proezas con su brazo:
+dispersa a los soberbios de corazón,
+derriba del trono a los poderosos
+y enaltece a los humildes,
+a los hambrientos los colma de bienes
+y a los ricos los despide vacíos.
+
+Auxilia a Israel, su siervo,
+acordándose de su misericordia
+—como lo había prometido a nuestros padres—
+en favor de Abraham y su descendencia por siempre.
+
+Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.
+
+Ant. Lo que deseo es el pan de Dios, que es la carne de Jesucristo, de la descendencia de David, y la bebida de su sangre, que es la caridad incorruptible.
+
+PRECES
+
+En esta hora en la que el Señor, cenando con sus discípulos, presentó al Padre su propia vida que luego entregó en la cruz, aclamemos al Rey de los mártires, diciendo:
+
+Te glorificamos, Señor.
+
+Te damos gracias, Señor, principio, ejemplo y rey de los mártires,
+porque nos amaste hasta el extremo.
+
+Te damos gracias, Señor, porque no cesas de llamar a los pecadores arrepentidos
+y les das parte en los premios de tu reino.
+
+Te damos gracias, Señor, porque hoy hemos ofrecido, como sacrificio para el perdón de los pecados,
+la sangre de la alianza nueva y eterna.
+
+Te damos gracias, Señor,
+porque con tu gracia nos has dado perseverar en la fe durante el día que ahora termina.
+
+Se pueden añadir algunas intenciones libres
+
+Te damos gracias, Señor,
+porque has asociado a nuestros hermanos difuntos a tu muerte.
+
+Dirijamos ahora nuestra oración al Padre que está en los cielos, diciendo:
+
+Padre nuestro...
+
+ORACION
+
+Dios todopoderoso y eterno, que has querido que el testimonio de los mártires sea el honor de todo el cuerpo de tu Iglesia, concédenos que el martirio de san Ignacio de Antioquia, que hoy conmemoramos, así como le mereció a él una gloria eterna, así también nos dé a nosotros valor en el combate de la fe. Por nuestro Señor Jesucristo, tu Hijo, que vive y reina contigo en la unidad del Espíritu Santo y es Dios, por los siglos de los siglos. Amén
+
+CONCLUSIÓN
+
+V. El Señor nos bendiga, nos guarde de todo mal y nos lleve a la vida eterna.
+R. Amén.`,
+            "VIERNES_PROGRAMA": `Viernes 17
+
+13:00 Salida
+19:30 Alojamiento + cena
+20:45 Rosario de las antorchas`,
+            "SABADO_PROGRAMA": `Sábado 18
+
+06:30 Desayuno
+09:00 Pasos Sta. Bernadette (opcional)
+12:00 Misa en la Cripta
+13:30 Comida + tiempo libre
+15:15 Vía Crucis (opcional)
+17:00 Procesión Eucarística
+19:30 Cena
+20:45 Rosario de las antorchas`,
+            "DOMINGO_VISPERAS": `II VÍSPERAS DOMINGO
+(Oración de la tarde)
+
+INVOCACIÓN INICIAL
+
+V. Dios mío, ven en mi auxilio
+R. Señor, date prisa en socorrerme. Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén. Aleluya.
+
+Himno: DIOS DE LA LUZ, PRESENCIA ARDIENTE.
+
+Dios de la luz, presencia ardiente
+sin meridiano ni frontera:
+vuelves la noche mediodía,
+ciegas al sol con tu derecha.
+
+Como columna de la aurora,
+iba en la noche tu grandeza;
+te vio el desierto, y destellaron
+luz de tu gloria las arenas.
+
+Cerró la noche sobre Egipto
+como cilicio de tinieblas;
+para tu pueblo amanecías
+bajo los techos de las tiendas.
+
+Eres la luz, pero en tu rayo
+lanzas el día o la tiniebla:
+ciegas los ojos del soberbio,
+curas al pobre su ceguera.
+
+Cristo Jesús, tú que trajiste
+fuego a la entraña de la tierra,
+guarda encendida nuestra lámpara
+hasta la aurora de tu vuelta. Amén.
+
+SALMODIA
+
+Ant 1. Desde Sión extenderá el Señor el poder de su cetro, y reinará eternamente. Aleluya.
+
+Salmo 109, 1-5. 7 - EL MESÍAS, REY Y SACERDOTE.
+
+Oráculo del Señor a mi Señor:
+«Siéntate a mi derecha,
+y haré de tus enemigos
+estrado de tus pies.»
+
+Desde Sión extenderá el Señor
+el poder de tu cetro:
+somete en la batalla a tus enemigos.
+
+«Eres príncipe desde el día de tu nacimiento,
+entre esplendores sagrados;
+yo mismo te engendré, como rocío,
+antes de la aurora.»
+
+El Señor lo ha jurado y no se arrepiente:
+«Tú eres sacerdote eterno
+según el rito de Melquisedec.»
+
+El Señor a tu derecha, el día de su ira,
+quebrantará a los reyes.
+
+En su camino beberá del torrente,
+por eso levantará la cabeza.
+
+Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.
+
+Ant. Desde Sión extenderá el Señor el poder de su cetro, y reinará eternamente. Aleluya.
+
+Ant 2. En presencia del Señor se estremece la tierra. Aleluya.
+
+Salmo 113 A - ISRAEL LIBRADO DE EGIPTO; LAS MARAVILLAS DEL ÉXODO.
+
+Cuando Israel salió de Egipto,
+los hijos de Jacob de un pueblo balbuciente,
+Judá fue su santuario,
+Israel fue su dominio.
+
+El mar, al verlos, huyó,
+el Jordán se echó atrás;
+los montes saltaron como carneros;
+las colinas, como corderos.
+
+¿Qué te pasa, mar, que huyes,
+y a ti, Jordán, que te echas atrás?
+¿Y a vosotros, montes, que saltáis como carneros;
+colinas, que saltáis como corderos?
+
+En presencia del Señor se estremece la tierra,
+en presencia del Dios de Jacob;
+que transforma las peñas en estanques,
+el pedernal en manantiales de agua.
+
+Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.
+
+Ant. En presencia del Señor se estremece la tierra. Aleluya.
+
+Ant 3. Reina el Señor, nuestro Dios, dueño de todo. Aleluya.
+
+Cántico: LAS BODAS DEL CORDERO - Cf. Ap 19,1-2, 5-7
+
+El cántico siguiente se dice con todos los Aleluya intercalados cuando el oficio es cantado. Cuando el Oficio se dice sin canto es suficiente decir el Aleluya sólo al principio y al final de cada estrofa.
+
+Aleluya.
+La salvación y la gloria y el poder son de nuestro Dios
+(R. Aleluya)
+porque sus juicios son verdaderos y justos.
+R. Aleluya, (aleluya).
+
+Aleluya.
+Alabad al Señor sus siervos todos.
+(R. Aleluya)
+Los que le teméis, pequeños y grandes.
+R. Aleluya, (aleluya).
+
+Aleluya.
+Porque reina el Señor, nuestro Dios, dueño de todo.
+(R. Aleluya)
+Alegrémonos y gocemos y démosle gracias.
+R. Aleluya, (aleluya).
+
+Aleluya.
+Llegó la boda del cordero.
+(R. Aleluya)
+Su esposa se ha embellecido.
+R. Aleluya, (aleluya).
+
+Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.
+
+Ant. Reina el Señor, nuestro Dios, dueño de todo. Aleluya.
+
+LECTURA BREVE   2Co 1, 3-4
+
+Bendito sea Dios, Padre de nuestro Señor Jesucristo, Padre de misericordia y Dios de todo consuelo; él nos consuela en todas nuestras luchas, para poder nosotros consolar a los que están en toda tribulación, mediante el consuelo con que nosotros somos consolados por Dios.
+
+RESPONSORIO BREVE
+
+V. Bendito eres, Señor, en la bóveda del cielo.
+R. Bendito eres, Señor, en la bóveda del cielo.
+
+V. Digno de gloria y alabanza por los siglos.
+R. En la bóveda del cielo.
+
+V. Gloria al Padre, y al Hijo, y al Espíritu Santo.
+R. Bendito eres, Señor, en la bóveda del cielo.
+
+CÁNTICO EVANGÉLICO
+
+Ant. Cuando venga el Hijo del hombre, ¿encontrará fe sobre la tierra?
+
+Cántico de María. ALEGRÍA DEL ALMA EN EL SEÑOR Lc 1, 46-55
+
+Proclama mi alma la grandeza del Señor,
+se alegra mi espíritu en Dios, mi salvador;
+porque ha mirado la humillación de su esclava.
+
+Desde ahora me felicitarán todas las generaciones,
+porque el Poderoso ha hecho obras grandes por mí:
+su nombre es santo,
+y su misericordia llega a sus fieles
+de generación en generación.
+
+El hace proezas con su brazo:
+dispersa a los soberbios de corazón,
+derriba del trono a los poderosos
+y enaltece a los humildes,
+a los hambrientos los colma de bienes
+y a los ricos los despide vacíos.
+
+Auxilia a Israel, su siervo,
+acordándose de su misericordia
+—como lo había prometido a nuestros padres—
+en favor de Abraham y su descendencia por siempre.
+
+Gloria al Padre, y al Hijo, y al Espíritu Santo.
+Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.
+
+Ant. Cuando venga el Hijo del hombre, ¿encontrará fe sobre la tierra?
+
+PRECES
+
+Adoremos a Cristo, Señor nuestro y cabeza de la Iglesia, y digámosle confiadamente:
+
+Venga a nosotros tu reino, Señor.
+
+Señor, amigo de los hombres, haz de tu Iglesia instrumento de concordia y unidad entre ellos
+y signo de salvación para todos los pueblos.
+
+Protege con tu brazo poderoso al Papa y a todos los obispos
+y concédeles trabajar en unidad, amor y paz.
+
+A los cristianos concédenos vivir íntimamente unidos a ti, nuestro Maestro,
+y dar testimonio en nuestras vidas de la llegada de tu reino.
+
+Concede, Señor, al mundo el don de la paz
+y haz que en todos los pueblos reine la justicia y el bienestar.
+
+Se pueden añadir algunas intenciones libres
+
+Otorga, a los que han muerto, una resurrección gloriosa
+y haz que los que aún vivimos en este mundo gocemos un día con ellos de la felicidad eterna.
+
+Terminemos nuestra oración con las palabras del Señor:
+
+Padre nuestro...
+
+ORACION
+
+Dios todopoderoso y eterno, haz que nuestra voluntad sea siempre dócil a la tuya y que te sirvamos con un corazón sincero. Por nuestro Señor Jesucristo, tu Hijo, que vive y reina contigo en la unidad del Espíritu Santo y es Dios, por los siglos de los siglos. Amén
+
+CONCLUSIÓN
+
+V. El Señor nos bendiga, nos guarde de todo mal y nos lleve a la vida eterna.
+R. Amén.`,
+            "DOMINGO_PROGRAMA": `Domingo 19
+
+06:30 Desayuno
+09:30 Misa Internacional
+11:30 Tiempo libre
+13:15 Comida
+14:30 Salida
+20:00 Llegada`,
+            "LOURDES_MENSAJE": `El mensaje de Lourdes
+
+El 18 de febrero de 1858: palabras extraordinarias
+Durante la tercera aparición, el 18 de febrero, la Virgen habla por primera vez: “Lo que tengo que decirle no es necesario ponerlo por escrito». Esto quiere decir que María quiere entrar en relación con Bernardita, una relación de amor, que se sitúa a nivel del corazón. Bernardita es invitada de entrada a abrir la inmensidad de su corazón a ese mensaje de amor. A la segunda palabra de la Virgen: “¿Quiere hacerme el favor de venir aquí durante quince días?”, Bernardita se queda sin habla. Es la primera vez que alguien la trata de “usted”. Bernardita, al sentirse respetada y amada, hace la experiencia de ser ella misma una persona. Todos somos dignos ante Dios. Porque cada uno es amado por Dios. La tercera palabra de la Virgen: “No le prometo hacerle feliz en este mundo, sino en el otro”. Cuando Jesús en el Evangelio nos invita a descubrir el Reino de los Cielos, nos invita a descubrir, en el mundo tal y como es, “otro mundo”. Allí donde hay Amor, Dios está presente.
+ 
+Dios es Amor
+A pesar de su miseria, enfermedad e incultura, Bernardita siempre ha sido profundamente feliz. Es eso el Reino de Dios, el mundo del verdadero Amor. Durante las siete primeras apariciones de María, Bernardita mostró un rostro radiante de alegría, felicidad y luz. Pero entre la octava y la duodécima aparición todo cambia: el rostro de Bernardita se vuelve duro, triste, doloroso y sobre todo hace gestos incomprensibles… Andar de rodillas hasta el fondo de la Gruta; besar el suelo sucio y asqueroso de esta Gruta; comer hierbas amargas; rascar el suelo e intentar beber agua fangosa; ensuciarse la cara con barro. Después Bernardita mira a la gente, todos dicen “¡Está loca!” Durante cuatro apariciones Bernardita repitió los mismos gestos. ¿Qué significa todo eso? ¡Nadie entendió lo que era! Sin embargo nos encontramos en el corazón del “Mensaje de Lourdes”.
+ 
+El sentido biblico de las apariciónes
+Los gestos de Bernardita son gestos bíblicos. Bernardita va a expresar la Encarnación, Pasión y Muerte de Jesucristo. Andar de rodillas hasta el fondo de la Gruta: es el gesto de la Encarnación, la sumisión de Dios hecho hombre. Comer hierbas amargas recuerda a la tradición judía que se encuentra en los textos antiguos. Ensuciarse la cara: el profeta Isaías, cuando habla del Cristo, le muestra bajo los rasgos de un Siervo que sufre.
+ 
+La Gruta oculta un tesoro incomensurable
+En la novena aparición, “la Dama” pidió a Bernardita que fuera a rascar el suelo, diciéndola: “Vaya a beber y a lavarse en la fuente”. Con esos gestos se nos desvela el misterio mismo del corazón de Cristo: “Un soldado, con la lanza, le traspasó el costado y, al punto, brotó sangre y agua”. El corazón del hombre, herido por el pecado, está significado en las hierbas y el barro: Pero en el fondo del corazón está la vida misma de Dios, representada en la fuente. Le preguntaron a Bernardita si la Señora le había hablado, si le había dicho algo y ella respondió: «Sí, la Señora repetía: Penitencia, penitencia, penitencia. Rece por los pecadores». Recordemos que «Penitencia» significa «Conversión». Para la Iglesia la conversión consiste, como Jesucristo lo enseña, en volver nuestro corazón a Dios y a los hermanos.
+En la decimotercera Aparición, María dice Bernardita: «Vaya a decir a los sacerdotes que se construya aquí una capilla y que se venga en procesión». “Venir en procesión”, significa caminar en esta vida, junto a nuestros hermanos. “Construir una capilla”. En Lourdes, se han construido capillas, para acoger a la muchedumbre de peregrinos. La «capilla», es la «Iglesia» que debemos construir, allí donde estamos.
+ 
+La Señora dijo su nombre: «Que soy era Immaculada Counceptiou»
+El 25 de marzo de 1858, día de la decimosexta Aparición, Bernardita pide a la «Señora» que le diga su nombre. La «Señora» le responde en bigurdán: «Que soy era Immaculada Councepciou», lo que quiere decir: «Yo soy la Inmaculada Concepción». La Inmaculada Concepción es “María concebida sin pecado, por los méritos de Cristo en la Cruz” (definición del dogma promulgado en 1854). Bernardita corrió enseguida junto al P. Peyramale, para comunicarle el nombre de la «Señora». El entendió que es la Madre de Dios la que se aparece en la Gruta de Massabielle. Más tarde, el obispo de Tarbes, Monseñor Laurence, lo declarará solemnemente.
+ 
+Todos estamos llamados a ser inmaculados
+La firma del mensaje – cuando la Señora dice su nombre – viene dada después de tres semanas de apariciones y tres semanas de silencio (del 4 al 25 de marzo). El 25 de marzo es el día de la Anunciación, de la “concepción” de Jesús en el seno de María. La Señora de la Gruta dice su vocación: ella es la Madre de Jesús, todo su ser es concebir al Hijo de Dios, ella es toda para Él. Para ello es Inmaculada, habitada por Dios. Así, la Iglesia y todos los cristianos tienen que dejarse habitar por Dios para ser inmaculados, perdonados e indultados de manera a ser, ellos también, testigos de Dios.`,
+            "LOURDES_BERNARDET": `Bernardete
+Todo lo que sabemos de las apariciones y del mensaje de Lourdes nos ha llegado por Bernardita, la única que vio. Todo depende de su testimonio. ¿Quién es Bernardita? Podemos distinguir tres etapas en su vida: los años oscuros de su infancia, una vida “pública” en el tiempo de las apariciones y del testimonio y, por último, una vida “oculta” como religiosa en Nevers.
+
+Los años oscuros
+Cuando se habla de las apariciones, se suele presentar a Bernardita como una chica pobre, enferma e ignorante que vive miserablemente en el «Calabozo». Es verdad, pero no siempre fue así. Cuando nació en el molino de Boly el 7 de enero de 1844, era la primogénita, la heredera de Francisco Soubirous y Louisa Castérot, casados por amor, cosa no muy frecuente en esa época. Bernardita crece en una familia unida que se ama y donde se reza. Vive diez años de felicidad en esa etapa tan decisiva de la primera infancia, que le darán una solidez y un equilibrio sorprendentes. La miseria que sobreviene no puede acabar con esa riqueza humana. Es verdad que a los 14 años Bernardita mide 1,40 m, padece crisis de asma y problemas de estómago, pero ella no es cualquier cosa: es una auténtica bigurdana cap bourrut, «cabeza dura», parecida a las piedras de las canteras de Lourdes. Tiene una naturaleza viva, espontánea, tenaz, de réplica fácil -como comprobará el propio Jacomet-, incapaz de dobleces. Tiene amor propio, cosa que no se le escapa a la madre Vauzou en Nevers: «Carácter rígido. Muy susceptible». Bernardita se aflige por sus defectos y los combate enérgicamente. Así pues, una personalidad fuerte, pero sin cultura. Nada de colegio: había que trabajar en la taberna de la tía Bernarda. Nada de catecismo: su memoria rebelde no retenía las fórmulas abstractas. A los 14 años no sabía leer ni escribir, y se siente excluida, como se diría hoy. Entonces reacciona: en septiembre de 1857 la envían a Bartrès, y vuelve a Lourdes el 21 de enero de 1858: quiere hacer la primera comunión, cosa que ocurre el 13 de junio.
+ 
+La vida «pública»
+Corresponde a la época de las apariciones. En sus ocupaciones cotidianas, como ir a buscar leña, Bernardita se encuentra cara a cara con el misterio. Un ruido «como una ráfaga de viento», una luz, una presencia. ¿Cómo reacciona? Demostrando sentido común y un discernimiento notables. Creyendo que podía ser una ilusión, pone en marcha todos sus recursos humanos: observa, se frota los ojos, intenta comprender. Luego se vuelve hacia sus compañeras para comprobar sus impresiones: «¿No habéis visto nada?». Entonces se dirige a Dios y reza el rosario. Se dirige a la Iglesia y pide consejo en confesión al padre Pomian: «He visto algo blanco que tenia la forma de una Señora». Interrogada por el comisario Jacomet, responde con una seguridad, prudencia y firmeza sorprendentes en una chica sin estudios: «Aquero, no he dicho la Santísima Virgen… Señor, usted me lo ha cambiado todo». Cuenta lo que ha visto con un desparpajo y una libertad asombrosos: «Estoy encargada de decírselo, no de hacérselo creer».
+Cuenta las apariciones con exactitud, sin añadir ni quitar. Una sola vez, atemorizada por la rudeza de Peyramale (lit. mala piedra), añade: «Señor párroco, la Señora sigue pidiendo la capilla…, ¡aunque sea muy pequeña!». En su carta pastoral sobre las apariciones, Mons. Laurence subraya «la sencillez, el candor, la modestia de esta niña… que cuenta todo sin afectación, con una ingenuidad conmovedora… y, a las numerosas preguntas que le hacen, responde sin dudar, de modo claro y preciso, con una fuerte convicción». Insensible tanto a las amenazas como a las ofertas de sacar partido, «la sinceridad de Bernardita es incontestable: no ha querido engañar». Pero ¿no se estará engañando ella misma, victima de una alucinación?, se pregunta el obispo.
+Entonces apela a la calma de Bernardita, a su sentido común, a la ausencia de exaltación y a que las apariciones no dependen de Bernardita, pues han ocurrido sin que ella las esperase: durante la quincena, dos días acudió a la Gruta sin que la Señora apareciese.
+Para llegar a estas conclusiones, Bernardita ha tenido que responder a curiosos, admiradores, periodistas y otros, y comparecer ante comisiones de investigación civiles y religiosas. Arrancada del anonimato, se ve proyectada al primer plano de la actualidad, victima de una «tempestad mediática». Podemos imaginar la paciencia, el equilibrio y el humor necesarios para resistir y preservar la pureza de su testimonio. No acepta regalos: «Quiero seguir pobre». No bendice los rosarios que le presentan: «No llevo estola». Ni vende medallas: «No soy comerciante». Y ante las imágenes a diez perras que la representan, exclama: «¡Diez perras, eso es lo que valgo!». En estas condiciones la vida en el Calabozo se vuelve imposible: hay que protegerla. El párroco Peyramale y el alcalde Lacadé acuerdan que Bernardita sea admitida como «enferma indigente» en el Hospicio de las Hermanas de Nevers, al que llega el 15 de julio de 1860. Con 16 años aprende a leer y a escribir. Aún hoy se pueden ver en la iglesia de Bartrès los «palotes» trazados por su mano. Posteriormente escribe a menudo a su familia por un bautizo, una primera comunión o un funeral; ¡escribe incluso, al Papa! Visita a sus padres, que han vuelto a la «casa paterna»; cuida enfermos, pero ante todo busca su camino: si no sirve para nada ni tiene dote, ¿cómo ser religiosa? Al final entra en las Hermanas de Nevers «porque no me han obligado a ello». Desde entonces en su interior se impone una verdad: «Mi misión en Lourdes ya ha terminado». Como Juan Bautista ante Jesús, debe desaparecer para hacer sitio a María.
+ 
+La vida “oculta” en Nevers
+Ella misma usa esta expresión: «He venido aquí para ocultarme». En Lourdes era Bernardita, la vidente; en Nevers se convierte en la hermana Marie-Bernard, la santa. A menudo se ha hablado de la severidad de sus superioras con ella, pero hay que comprender que Bernardita era un caso especial: había que apartarla de la curiosidad, protegerla y proteger la Congregación. Bernardita relata las apariciones a la comunidad, reunida al día siguiente de su llegada; luego ya no podrá hablar. La dejan en la casa madre, aunque le hubiera gustado cuidar enfermos en otro lugar. El día de su profesión, no hay ninguna ocupación prevista para ella. Entonces el obispo, inspirado, le encomienda «el trabajo de orar». «Rece por los pecadores», le había dicho la Señora. Y lo cumple. «Mis armas son la oración y el sacrificio», le escribe al Papa. La enfermedad la convierte en una columna de la enfermería. Y luego están las interminables sesiones de locutorio: «Estos pobres obispos harían mejor quedándose en su casa». Lourdes está muy lejos… ¿Volver a la Gruta? ¡Nunca!, «Dejarían a la Santísima Virgen para seguirme». Pero todos los días va allí en peregrinación espiritual.
+No habla de Lourdes; lo vive. «Usted debe ser la primera en vivir el mensaje», le dice el padre Douce, su confesor. De hecho, después de ser ayudante de enfermería, entra poco a poco en la condición de enferma, lo que convierte en «su tarea» al aceptar, con un perfecto acto de amor, todas las cruces por los pecadores: «Después de todo, son nuestros hermanos». En las largas noches de insomnio, uniéndose a las misas que se celebran en todo el mundo, se ofrece como una «crucificada viviente» en el enorme combate entre las tinieblas y la luz, asociada con María al misterio de la Redención y con los ojos fijos en el Crucifijo: «De ahí saco mi fuerza».
+Muere en Nevers el 16 de abril de 1879 a la edad de 35 años. La Iglesia la proclamó santa el 8 de diciembre de 1933, no por haber sido favorecida por las apariciones, sino por el modo en que respondió.`,
+            "LOURDES_AGUA": `El Agua de la roca
+
+Fue el 25 de febrero de 1858, durante la novena aparición, cuando todo cambió. Todo cambia cuando Bernardita recibe la orden: «Vaya a beber y a lavarse en la fuente». Desde aquel día, millones de peregrinos y visitantes acuden a Lourdes para beber y lavarse en esa agua, que no tiene propiedades terapéuticas ni específicas. La propia Bernardita Soubirous decía: «Beben el agua como si fuera una medicina... Hay que tener fe, hay que rezar: ¡esta agua no tendría ninguna virtud sin la fe!» La popularidad del agua de Lourdes se debe a los milagros, pero no es agua bendita: el agua del Manantial sólo puede ser bendecida por un sacerdote.
+
+Muchos peregrinos quieren llevarse un poco para ellos o para sus seres queridos. El agua de Lourdes es gratuita y de libre acceso en las fuentes del Santuario. No se puede vender.`,
+            "LOURDES_APP": `<h3 style="text-align: center; color: var(--text-color); margin-bottom: 25px;">Descargar la App Oficial del Santuario</h3>
+<div class="menu-container">
+    <a href="https://play.google.com/store/apps/details?id=com.intence.sanctuaire.lourdes&gl=FR&pli=1" class="btn" target="_blank" rel="noopener noreferrer" style="background-color: #3DDC84; display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="white"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 20c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v16zm5-14h8v12H8V6z"/></svg>
+        Android (Google Play)
+    </a>
+    <a href="https://apps.apple.com/fr/app/sanctuaire-notre-dame-lourdes/id6456609432" class="btn" target="_blank" rel="noopener noreferrer" style="background-color: #007AFF; display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="white"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19.64 3.64c-1.8-1.8-4.2-2.84-6.84-2.84s-5.04 1.04-6.84 2.84c-1.8 1.8-2.84 4.2-2.84 6.84s1.04 5.04 2.84 6.84c1.8 1.8 4.2 2.84 6.84 2.84s5.04-1.04 6.84-2.84c1.8-1.8 2.84-4.2 2.84-6.84s-1.04-5.04-2.84-6.84zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v6h-2V8zm0 8h2v2h-2v-2z"/></svg>
+        Apple (App Store)
+    </a>
+</div>`
+        };
+
+        // LÓGICA DE NAVEGACIÓN
+        const allViews = document.querySelectorAll('.view');
+        const contentDisplay = document.getElementById('content-display');
+        const contentBackButton = document.getElementById('content-back-button');
+        const homeButton = document.getElementById('home-button');
+        
+        function hideAllViews() {
+            allViews.forEach(view => {
+                view.style.display = 'none';
+            });
+        }
+
+        function showView(viewId) {
+            hideAllViews();
+            document.getElementById(viewId).style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function showContent(contentKey, backViewId) {
+            const content = contenidoApp[contentKey];
+            if (!content) {
+                 console.error("Contenido no encontrado para la clave:", contentKey);
+                 return;
+            }
+
+            let formattedContent;
+
+            if (contentKey.includes('VISPERAS')) {
+                const lines = content.split('\n');
+                const processedLines = lines.map(line => {
+                    const trimmedLine = line.trim();
+                    if (trimmedLine === '') return '';
+
+                    if (/^(V\.|R\.|Ant(\s\d)?\.)/.test(trimmedLine)) {
+                        return line.replace(/^(V\.|R\.|Ant(\s\d)?\.)/, '<span class="liturgical-red">$&</span>');
+                    }
+
+                    const isAllUppercase = trimmedLine === trimmedLine.toUpperCase() && /[A-Z]/.test(trimmedLine);
+                    const isPatternTitle = /^(Himno:|Salmo|Cántico:|Cántico de María\.)/.test(trimmedLine);
+
+                    if (!/[a-záéíóú]/.test(trimmedLine) && isAllUppercase && trimmedLine.length > 2) {
+                        return `<strong class="liturgical-title">${line}</strong>`;
+                    }
+                    if(isPatternTitle){
+                        return `<strong class="liturgical-title">${line}</strong>`;
+                    }
+                    
+                    return line;
+                });
+                formattedContent = processedLines.join('<br>');
+            } else if (contentKey === 'LOURDES_APP') {
+                formattedContent = content; // El contenido ya es HTML
+            } else if (contentKey.includes('LOURDES')) {
+                let processedContent = content;
+                processedContent = processedContent.replace(/(«[^»]+»|“[^”]+”)/g, '<em>$1</em>');
+
+                const lines = processedContent.split('\n');
+                const finalLines = lines.map((line, i) => {
+                    const trimmedLine = line.trim();
+                    if (trimmedLine.length === 0) return '';
+
+                    const wordCount = trimmedLine.split(/\s+/).filter(Boolean).length;
+                    const isPrecededByEmpty = (i === 0 || lines[i-1].trim() === '');
+                    
+                    if (isPrecededByEmpty && wordCount > 0 && wordCount < 12) {
+                         const textOnly = trimmedLine.replace(/<[^>]+>/g, '');
+                         if (!/[.!?]$/.test(textOnly)) {
+                            return `<strong class="content-subheading">${line}</strong>`;
+                         }
+                    }
+                    return line;
+                });
+                formattedContent = finalLines.join('<br>');
+            } else if (contentKey.includes('PROGRAMA')) {
+                const lines = content.split('\n');
+                let isFirstContentLine = true;
+                const processedLines = lines.map(line => {
+                    if (line.trim() === '') return ''; // Mantiene los espacios para separar
+                    if (isFirstContentLine) {
+                        isFirstContentLine = false;
+                        return line; // La primera línea es el título, ej. "Viernes 17"
+                    }
+                    return `<strong>${line}</strong>`;
+                });
+                formattedContent = processedLines.join('<br>');
+            } else {
+                formattedContent = content.replace(/\n/g, '<br>');
+            }
+            
+            contentDisplay.innerHTML = formattedContent;
+            contentBackButton.setAttribute('onclick', `showView('${backViewId}')`);
+            showView('content-view');
+        }
+
+        // Event listener para el botón "Home" del encabezado
+        homeButton.addEventListener('click', () => showView('main-menu'));
+
+        // Mostrar el menú principal al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            showView('main-menu');
+        });
+    </script>
+
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
