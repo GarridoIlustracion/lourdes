@@ -105,7 +105,7 @@
             background-image: url('https://raw.githubusercontent.com/JesusGarr/lourdes/main/images/gruta.jpg');
             background-size: cover;
             background-position: center center;
-            overflow: hidden;
+            overflow-y: auto; /* Permite scroll si hay muchos botones */
             padding: calc(var(--header-height) + 30px) 20px 20px; /* Padding para no quedar debajo del header */
             color: white;
             z-index: 10; /* Se asegura que esté por debajo del header pero por encima del main */
@@ -232,6 +232,7 @@
                 <button class="btn btn-day" onclick="showView('submenu-sabado')">🗓️ Sábado 18</button>
                 <button class="btn btn-day" onclick="showView('submenu-domingo')">🗓️ Domingo 19</button>
                 <button class="btn btn-lourdes" onclick="showView('submenu-lourdes')">✨ Lourdes</button>
+                <a href="https://github.com/JesusGarr/lourdes/blob/main/docs/PlanoLourdes.pdf" class="btn btn-lourdes" target="_blank" rel="noopener noreferrer">🗺️ Mapa del Santuario</a>
             </div>
         </div>
 
