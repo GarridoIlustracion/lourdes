@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -77,6 +78,14 @@
             margin: 0 auto;
             animation: fadeIn 0.5s;
         }
+        
+        .view.active {
+            display: block;
+        }
+        
+        #main-menu.active {
+            display: flex;
+        }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -87,7 +96,6 @@
         #main-menu {
             position: relative;
             min-height: calc(100vh - var(--header-height) - 40px);
-            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -223,7 +231,7 @@
 
     <main>
         <!-- Main Menu -->
-        <div id="main-menu" class="view">
+        <div id="main-menu" class="view active">
             <h1 class="main-menu-title">Peregrinación a Lourdes</h1>
             <div class="menu-container">
                 <button class="btn btn-day" onclick="showView('submenu-viernes')">🗓️ Viernes 17</button>
@@ -557,8 +565,7 @@ SALMODIA
 
 Ant 1. Desde Sión extenderá el Señor el poder de su cetro, y reinará eternamente. Aleluya.
 
-Salmo 109, 1-5. 7 - EL MESÍAS, REY Y SACERDOTE.
-
+Salmo 109, 1-5. 7 - EL MESÍAS, REY Y SACERDOTECódigo de ejemplo
 Oráculo del Señor a mi Señor:
 «Siéntate a mi derecha,
 y haré de tus enemigos
@@ -803,15 +810,14 @@ Muchos peregrinos quieren llevarse un poco para ellos o para sus seres queridos.
         const contentBackButton = document.getElementById('content-back-button');
         const homeButton = document.getElementById('home-button');
         
-        function hideAllViews() {
-            allViews.forEach(view => {
-                view.style.display = 'none';
-            });
-        }
-
         function showView(viewId) {
-            hideAllViews();
-            document.getElementById(viewId).style.display = 'block';
+            allViews.forEach(view => {
+                view.classList.remove('active');
+            });
+            const viewToShow = document.getElementById(viewId);
+            if (viewToShow) {
+                viewToShow.classList.add('active');
+            }
             window.scrollTo(0, 0);
         }
 
@@ -893,11 +899,6 @@ Muchos peregrinos quieren llevarse un poco para ellos o para sus seres queridos.
 
         // Event listener para el botón "Home" del encabezado
         homeButton.addEventListener('click', () => showView('main-menu'));
-
-        // Mostrar el menú principal al cargar la página
-        document.addEventListener('DOMContentLoaded', () => {
-            showView('main-menu');
-        });
     </script>
 
 </body>
